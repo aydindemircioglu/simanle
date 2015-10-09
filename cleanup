@@ -1,0 +1,5 @@
+find . -name \*~ -exec rm {} \;
+find . -name \*.o -exec rm {} \;
+find . -name \*.so -exec rm {} \;
+find . -name "#*#" -exec rm {} \;
+rm ./simanle_0.1.1.tar.gz

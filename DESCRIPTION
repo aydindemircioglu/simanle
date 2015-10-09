@@ -1,0 +1,19 @@
+Package: simanle
+Type: Package
+Title: A simple manifold learning package
+Version: 0.1
+Date: 2015-10-27
+Author: Aydin Demircioglu
+Maintainer: Aydin Demircioglu <aydin.demircioglu@ini.rub.de>
+Description: A simple manifold learning package.
+Copyright: None.
+License: GPL (>= 3)
+Imports: Rcpp (>= 0.11.6),
+    checkmate (>= 1.5.1),
+    e1071
+LinkingTo: Rcpp
+Suggests: knitr,
+    testthat
+VignetteBuilder: knitr
+URL: http://github.com/aydindemircioglu/simanle
+BugReports: http://github.com/aydindemircioglu/simanle/issues

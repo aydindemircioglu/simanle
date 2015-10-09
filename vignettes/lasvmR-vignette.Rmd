@@ -1,0 +1,43 @@
+---
+title: "simanle"
+author: "Aydin Demircioglu"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{simanle}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+## Introduction
+
+simanle is a simple wrapper for the LASVM Solver (see [http://leon.bottou.org/projects/lasvm]). LASVM is basically an online variant of the SMO solver, but citing the original webpage is better:
+
+> LASVM is an approximate SVM solver that uses online approximation. It reaches accuracies similar to that of a real SVM after performing a single sequential pass through the training examples. Further benefits can be achieved using selective sampling techniques to choose which example should be considered next.
+
+Note that LASVM works with binary labels only, Y = {1, -1}. Nearly all parameters have been carried over. Multi-model saving was disabled.
+
+
+## Example
+
+
+```{r, echo=TRUE, results='asis', eval=TRUE}
+library(simanle)
+
+# generate two gaussian clusters (very easy example)
+qx = rnorm(100, mean = -3, sd = 1) - 1
+qy = rnorm(100, mean = -3, sd = 1) - 1
+px = rnorm(100, mean = 3, sd = 1) + 1
+py = rnorm(100, mean = 3, sd = 1) + 1
+data = rbind( cbind(px, py), cbind(qx, qy) )
+label = sign (data[,1])
+model = lasvmTrain (x = data, y = label, gamma = 1.0, cost = 1.0, epochs = 33, epsilon = 0.01)
+result = lasvmPredict (data, model)
+
+# compute error
+error = sum(abs(label - result$predictions))/length(label)*100
+cat ("Error rate is ", error)
+```
+
+

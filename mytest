@@ -1,0 +1,1 @@
+./cleanup ; Rscript ./compile.R; R CMD build .; R CMD check --as-cran ./simanle_0.1.1.tar.gz
